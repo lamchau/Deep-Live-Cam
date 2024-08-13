@@ -1,0 +1,43 @@
+# shellcheck shell=bash
+
+# derived from https://github.com/direnv/direnv/wiki/Python#virtualenvwrapper
+layout_hermit() {
+  # this will return the shell set via `chsh` and not necessarily within a
+  # subshell (e.g. fish && zsh will return fish not zsh)
+  local shell_name
+  shell_name="$(basename "$SHELL")"
+  if [ "$shell_name" != "fish" ]; then
+    echo "layout hermit is only a workaround for fish shell, use \`hermit shell-hook\` instead"
+    return
+  fi
+
+  # cosmetic, but prevent triggering hermit shell hook
+  if [[ -n "$HERMIT_BIN" ]]; then
+    return 0
+  fi
+
+  local activate_hermit
+  activate_hermit="$(\
+    find . \
+      -type f \
+      -name 'activate-hermit' \
+      -exec test -x {} \; \
+      -print
+  )"
+  if [[ -n "$activate_hermit" ]];then
+    # shellcheck source=/dev/null
+    source "$activate_hermit"
+  fi
+}
+
+layout_poetry() {
+  if [[ ! -f pyproject.toml ]]; then
+    return
+  fi
+
+  # local python_runtime
+  # python_runtime="$(dirname "$(poetry run which python)")"
+
+  # poetry shell
+  # export POETRY_ACTIVE=1
+}
