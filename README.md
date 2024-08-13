@@ -13,11 +13,10 @@ Users of this software are expected to use this software responsibly while abidi
 
 ### Basic: It is more likely to work on your computer but it will also be very slow. You can follow instructions for the basic install (This usually runs via **CPU**)
 #### 1.Setup your platform
--   python (3.10 recommended)
--   pip
+-   [`hermit`](https://github.com/cashapp/hermit)
 -   git
--   [ffmpeg](https://www.youtube.com/watch?v=OlNWCpFdVMA) 
 -   [visual studio 2022 runtimes (windows)](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
+
 #### 2. Clone Repository
     https://github.com/hacksider/Deep-Live-Cam.git
 
@@ -31,7 +30,7 @@ Then put those 2 files on the "**models**" folder
 #### 4. Install dependency
 We highly recommend to work with a  `venv`  to avoid issues.
 ```
-pip install -r requirements.txt
+pip install --user --requirement requirements.txt
 ```
 ##### DONE!!! If you dont have any GPU, You should be able to run roop using `python run.py` command. Keep in mind that while running the program for first time, it will download some models which can take time depending on your network connection.
 
@@ -39,9 +38,9 @@ pip install -r requirements.txt
 ### CUDA Execution Provider (Nvidia)*
 
 1.  Install  [CUDA Toolkit 11.8](https://developer.nvidia.com/cuda-11-8-0-download-archive)
-    
+
 2.  Install dependencies:
-    
+
 
 ```
 pip uninstall onnxruntime onnxruntime-gpu
